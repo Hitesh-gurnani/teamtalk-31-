@@ -1,0 +1,144 @@
+html,
+body,
+.app{
+	height: 100vh;
+	background:#eee;
+}
+
+/* sidepanel */
+
+.menu{
+	padding: .5em 0 2em 0;
+}
+
+/* messages */
+
+.messages{
+	height: 380px;
+	overflow-y: scroll;
+	margin-bottom: 100px;
+}
+.messages::-webkit-scrollbar {
+	width: .5em;
+  }
+   
+  .messages::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	
+  }
+   
+  .messages::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
+	outline: 1px solid slategrey;
+  }
+
+.messages__form{
+	margin-left: 320px !important;
+	position: fixed !important;
+	bottom: 1em;
+	left: 0;
+	right: 22em;
+	z-index: 200;
+}
+
+/* display messages */
+
+.message__self{
+	border-left: 2px solid orange;
+	padding-left: 8px;
+}
+
+.message__image{
+	padding: 1em;
+}
+
+/* color icon */
+.color__container{
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	width: 35px;
+	border-radius: 3px;
+}
+
+.color__square{
+	width: 35px;
+	height: 35px;
+}
+
+.color__overlay{
+	width: 85px;
+	height: 35px;
+	transform: rotate(225deg);
+}
+
+/* emojipicker */
+.emojipicker{
+	position: absolute;
+}
+
+
+/* Skeleton.js */
+.skeleton{
+	position: relative;
+	height: 40px;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
+
+.skeleton::after{
+	content: '';
+	display:block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50%;
+	height: 100%;
+	animation: sweep 2s infinite;
+	background-image: linear-gradient(
+		to left,
+		transparent,
+		rgba(255, 255, 255, .4),
+		transparent,
+	);
+}
+
+@keyframes sweep{
+	0% {
+		transform: translateX(-100%);
+	}
+	50% {
+		transform: translateX(150%);
+	}
+	100%{
+		transform: translateX(-100%);
+	}
+}
+
+.skeleton__avatar{
+	width: 35px;
+	height: 35px;
+	border-radius: 3px;
+	background-color: rgba(58,57,57,.3);
+}
+
+.skeleton__author{
+	background-color: rgba(58,57,57,.3);
+	width: 120px;
+	height: 10px;
+	border-radius: 3px;
+	position: absolute;
+	bottom: 30px;
+	left: 40px;
+	right: 0;
+}
+
+.skeleton__details{
+	background-color: rgba(58,57,57,.3);
+	height: 20px;
+	border-radius: 3px;
+	position: absolute;
+	bottom: 5px;
+	left: 40px;
+	right: 20px;
+}

@@ -15,6 +15,7 @@ const UserPanel = props => {
 			key: 3
 		}
 	]
+	
 	return (
 		<Grid style={{ background: props.primaryColor }}>
 			<Grid.Column>
@@ -24,6 +25,7 @@ const UserPanel = props => {
 						<Image src={logo} style={{height:50,width:50}}/>
 						<Header.Content>Team Talk</Header.Content>
 					</Header>
+					
 					{/* User Dropdown ,textAlign:'center' */}
 					<Header style={{ padding: '.5em', paddingTop: 20 }} as="h4" inverted>
 						<Dropdown

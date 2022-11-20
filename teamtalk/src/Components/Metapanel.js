@@ -69,8 +69,8 @@ const MetapanelComponent = props => {
 					active={props.activeIndex === 2}
 				>
 					<Header as="h4">
-						<Image src={props.currentChannel && props.currentChannel.createdBy.avatar} size="mini" circular />
-						{props.currentChannel && props.currentChannel.createdBy.name}
+						{/* <Image src={props.currentChannel && props.currentChannel.createdBy.avatar} size="mini" circular />
+						{props.currentChannel && props.currentChannel.createdBy.name} */}
 					</Header>
 				</Accordion.Content>
 			</Accordion>

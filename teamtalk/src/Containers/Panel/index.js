@@ -4,14 +4,18 @@ import Messages from "./Messages/Messages"
 import Sidepanel from "./Sidepanel/Sidepanel"
 import Metapanel from "./Metapanel/Metapanel"
 import { connect } from "react-redux";
+import { useEffect } from "react"
 
 const Panel = props => {
+	useEffect(() => {
+		document.body.style.zoom = "90%";
+	  }, []);
 	return (
 		<Grid columns="equal" className="app" style={{ background: props.secondaryColor,padding:'1em' }}>
-			<ColorPanel 
+			{/* <ColorPanel 
 			key={props.currentChannel && props.currentChannel.id}
 			currentChannel={props.currentChannel}
-			user={props.user}/>
+			user={props.user}/> */}
 			<Sidepanel
 				key={props.user && props.user.uid}
 				currentChannel={props.currentChannel}

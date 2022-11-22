@@ -1,6 +1,5 @@
 import { Button, Icon, Input, Modal } from "semantic-ui-react";
 
-
 const fileModal = props => {
 	return (
 		<Modal basic open={props.modal} onClose={props.closeModal}>
@@ -12,6 +11,9 @@ const fileModal = props => {
 					placholder="select a file"
 					name="file"
 					type="file"
+                    accept=".png,.jpg,.jpeg"
+					minFileSize={10000}
+					maxFileSize={28400000}
 				/>
 			</Modal.Content>
 			<Modal.Actions>
@@ -28,7 +30,7 @@ const fileModal = props => {
 					inverted
 					onClick={props.closeModal}
 				>
-					<Icon name="remove" />CANCLE
+					<Icon name="remove" />CANCEL
 				</Button>
 			</Modal.Actions>
 		</Modal>

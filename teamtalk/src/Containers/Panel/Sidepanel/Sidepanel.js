@@ -1,9 +1,8 @@
-import { Component } from "react";
+import { Component ,useState} from "react";
 import SidepanelComponent from "../../../Components/sidepanal/Sidepanel";
 import firebase from '../../../firebase';
 import { connect } from "react-redux";
 import { setChannels, setPrivateChannel } from "../../../Store/Actions/channelsActions";
-
 
 class Sidepanel extends Component {
 	state = {
@@ -237,7 +236,6 @@ class Sidepanel extends Component {
 			this.setState({notifications:updatedNotifications})
 		}
 	}
-
 	setChannel = (channel) => {
 		this.activeChannel(channel)
 		this.props.setChannel(channel)

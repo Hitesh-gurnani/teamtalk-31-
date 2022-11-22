@@ -5,13 +5,22 @@ import firebase from './firebase';
 import { setUser,clearUser } from './Store/Actions/authActions'
 import { connect } from 'react-redux'
 import { Spinner } from './Components/util/Spinner';
+import alanBtn from '@alan-ai/alan-sdk-web';
 
 const Panel=React.lazy(()=>import('./Containers/Panel/index'))
 const Register=React.lazy(()=>import('./Containers/Auth/RegisterContainer'))
 const Signin =React.lazy(()=>import('./Containers/Auth/SigninContainer'))
-
+const alanKey = ''
 class App extends Component {
   componentDidMount() {
+    this.alanBtnInstance = alanBtn({ 
+      key: 'b38b6095b505c8b6874a4285d1c330ca2e956eca572e1d8b807a3e2338fdd0dc/stage',
+      onCommand: (commandData) => {
+        if (commandData.command === 'go:back') {
+          //call client code that will react to the received command
+        }
+      },
+    });
     document.title="teamtalk"
     firebase
       .auth()

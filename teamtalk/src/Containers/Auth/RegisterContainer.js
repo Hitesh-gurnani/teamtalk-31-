@@ -15,6 +15,7 @@ class RegisterContainer extends Component {
 		error: null,
 		usersRef: firebase.database().ref('users'),
 	}
+	
 	componentDidMount() {
 		document.title = "Register"
 	}
@@ -28,30 +29,40 @@ class RegisterContainer extends Component {
 	}
 	onSubmit = e => {
 		this.setState({ loading: true })
-		if (this.isFormValid) {
+		var v = this.state.formData.email.slice(7);
+		if (this.isFormValid && v==="@juetguna.in") {
 			e.preventDefault();
 			firebase
 				.auth()
-				.createUserWithEmailAndPassword(this.state.formData.email, this.state.formData.password)
+				firebase.auth().onAuthStateChanged(function(user) {
+					user.sendEmailVerification(); 
+				});
+				firebase.auth().createUserWithEmailAndPassword(this.state.formData.email, this.state.formData.password)
 				.then(createdUser => {
 					createdUser.user.updateProfile({
+						
 						displayName: `${this.state.formData.firstName} ${this.state.formData.lastName}`,
 						photoURL: `https://www.gravatar.com/avatar/${md5(this.state.formData.email)}?d=identicon`
-					}).then(() => {
+					})
+					.then(() => {
 						this.saveCreatedUser(createdUser)
 							.then(() => {
 								this.setState({ loading: false })
 							})
 					})
+
 				})
+				
 				.catch(err => {
 					console.log(err);
 					this.setState({ loading: false, error: err.message })
 				})
 		}
+		else{
+			alert("Please enter g-suite id")
+		}
 
 	}
-
 	saveCreatedUser = createdUser => {
 		return this.state.usersRef.child(createdUser.user.uid)
 			.set({
@@ -79,5 +90,6 @@ class RegisterContainer extends Component {
 		)
 	}
 }
+
 
 export default RegisterContainer;

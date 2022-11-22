@@ -67,7 +67,7 @@ class Messages extends Component {
 	}
 
 	scrollToBottom = () => {
-		this.msgRef.scrollIntoView({ behavior: 'smooth' })
+		this.msgRef.scrollIntoView({ behavior:'smooth' })
 	}
 
 	addFile = e => {

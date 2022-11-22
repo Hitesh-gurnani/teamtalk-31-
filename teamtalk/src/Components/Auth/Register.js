@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button, Form, Grid, Header, Icon, Message, Segment } from "semantic-ui-react";
-
-const register = (props) => {
+import React, { useRef } from 'react';
+export const Register = (props) => {
 	return (
 		<Grid textAlign='center' verticalAlign="middle" style={{ height: '100vh' }}>
 			<Grid.Column style={{ maxWidth: 450 }}>
@@ -13,7 +13,7 @@ const register = (props) => {
 						<p>{props.error}</p>
 					</Message>
 				)}
-				<Form size='big' onSubmit={props.formSubmit} >
+				<Form size='big'  onSubmit={props.formSubmit} >
 					<Segment>
 						<Form.Group widths="equal">
 							<Form.Input
@@ -34,9 +34,10 @@ const register = (props) => {
 							placeholder="Enter Email address"
 							name="email"
 							onChange={props.valChange}
-							required />
+							required/>
 						<Form.Input
 							type='password'
+							minLength='8'
 							placeholder="Enter password"
 							name="password"
 							onChange={props.valChange}
@@ -45,7 +46,7 @@ const register = (props) => {
 							fluid
 							inverted
 							size="large"
-							loading={props.loading}
+							//loading={props.loading}
 						>
 							Register
 						</Button>
@@ -60,4 +61,4 @@ const register = (props) => {
 	)
 }
 
-export default register;
+export default Register;

@@ -1,9 +1,10 @@
-import { Button, Form, Icon, Input, Label, Menu, Modal, TextArea } from "semantic-ui-react"
-
-
+import { Button, Form, Icon, Input, Label, Menu, Modal, TextArea ,Popup} from "semantic-ui-react"
+import { Component ,useState} from "react";
 
 const Channels = props => {
-
+    const [val, setVal] = useState("Default input value");
+	const [open, setOpen] = useState(false);
+	const closeModal = () => setOpen(false);
 	const getNotifications = channel => {
 		let count = 0;
 		props.notifications.forEach(notification => {
@@ -14,17 +15,23 @@ const Channels = props => {
 		if (count > 0) return count
 	}
 	const displayChannels = () => (
+		
 		(props.channels.length > 0) && (props.channels.map(channel => (
+			
 			<Menu.Item
 				key={channel.id}
 				name={channel.name}
 				style={{ fontSize: '1.2rem', opacity: .7 }}
-				onClick={() => props.setChannel(channel)}
+				onClick={() =>{
+					  //{props.openModal}
+					  props.setChannel(channel)
+				}
+				}
 				active={props.activeChannel === channel.id}>
 				{getNotifications(channel) && (
 					<Label color="red">{getNotifications(channel)}</Label>
 				)}
-				<span style={{ fontSize: '1.2rem' }}>#{channel.name}</span>
+				<span style={{ fontSize: '1.2rem' }} onClick={() => setOpen(o => !o)}>#{channel.name}</span>
 			</Menu.Item>
 		))
 		))
@@ -45,6 +52,7 @@ const Channels = props => {
 
 			</Menu.Menu>
 			{/* NEW CHANNEL MODEL */}
+			{/* open={props.modal} */}
 			<Modal open={props.modal} onClose={props.closeModal} >
 				<Modal.Header style={{ textAlign: 'center', fontSize: '2rem' }}>Add New Channel</Modal.Header>
 				<Modal.Content>
@@ -74,6 +82,28 @@ const Channels = props => {
 					</Button>
 				</Modal.Actions>
 			</Modal>
+			<Popup open={open} closeOnDocumentClick onClose={props.closeModal}>
+			<Modal.Header style={{ textAlign: 'center', fontSize: '2rem' }}>Verify the channel Key</Modal.Header>
+				<Modal.Content>
+					<Form onSubmit={props.submitNewForm}>
+						<Form.Field>
+							<Input
+								fluid
+								placeholder="Channel Key"
+								name="channelkey"
+								onChange={props.changeInput} />
+						</Form.Field>
+					</Form>
+				</Modal.Content>
+				<Modal.Actions>
+					<Button color="green" inverted onClick={props.submitNewForm}>
+						<Icon name="checkmark" />VERIFY
+					</Button>
+					<Button color="red" inverted onClick={closeModal}>
+						<Icon name="remove" />CLOSE
+					</Button>
+				</Modal.Actions>
+      </Popup>
 		</>
 	)
 }

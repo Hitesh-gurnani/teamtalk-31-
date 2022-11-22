@@ -2,6 +2,7 @@ import { Component } from 'react'
 import Register from '../../Components/Auth/Register'
 import firebase from '../../firebase';
 import md5 from 'md5';
+
 class RegisterContainer extends Component {
 	state = {
 		formData: {
@@ -13,8 +14,8 @@ class RegisterContainer extends Component {
 		loading: false,
 		error: null,
 		usersRef: firebase.database().ref('users'),
-
 	}
+	
 	componentDidMount() {
 		document.title = "Register"
 	}
@@ -26,14 +27,16 @@ class RegisterContainer extends Component {
 			this.state.formData.password.length > 0
 		)
 	}
-	
 	onSubmit = e => {
 		this.setState({ loading: true })
-		if (this.isFormValid) {
+		var v = this.state.formData.email.slice(7);
+		if (this.isFormValid && v==="@juetguna.in") {
 			e.preventDefault();
 			firebase
 				.auth()
-				
+				firebase.auth().onAuthStateChanged(function(user) {
+					user.sendEmailVerification(); 
+				});
 				firebase.auth().createUserWithEmailAndPassword(this.state.formData.email, this.state.formData.password)
 				.then(createdUser => {
 					createdUser.user.updateProfile({
@@ -47,12 +50,16 @@ class RegisterContainer extends Component {
 								this.setState({ loading: false })
 							})
 					})
+
 				})
 				
 				.catch(err => {
 					console.log(err);
 					this.setState({ loading: false, error: err.message })
 				})
+		}
+		else{
+			alert("Please enter g-suite id")
 		}
 
 	}
@@ -82,7 +89,6 @@ class RegisterContainer extends Component {
 				 />
 		)
 	}
-
 }
 
 

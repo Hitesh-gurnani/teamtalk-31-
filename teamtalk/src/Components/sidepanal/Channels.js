@@ -23,17 +23,18 @@ const Channels = props => {
 				name={channel.name}
 				style={{ fontSize: '1.2rem', opacity: .7 }}
 				onClick={() =>{
-					if(y===1)
-					  props.setChannel(channel)
-					else
-					  alert("hi")
+					setOpen(o => !o)
 				}
 				}
 				active={props.activeChannel === channel.id}>
 				{getNotifications(channel) && (
 					<Label color="red">{getNotifications(channel)}</Label>
 				)}
-				<span style={{ fontSize: '1.2rem' }} onClick={() => setOpen(o => !o)}>#{channel.name}</span>
+				<span style={{ fontSize: '1.2rem' }} onClick={() => {
+					if(y===1)
+					  props.setChannel(channel)
+				  else
+					alert("hi")}}>#{channel.name}</span>
 			</Menu.Item>
 		))
 		))

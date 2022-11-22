@@ -1,6 +1,6 @@
 import { Button, Form, Icon, Input, Label, Menu, Modal, TextArea ,Popup} from "semantic-ui-react"
 import { Component ,useState} from "react";
-
+var y=0
 const Channels = props => {
     const [val, setVal] = useState("Default input value");
 	const [open, setOpen] = useState(false);
@@ -15,7 +15,7 @@ const Channels = props => {
 		if (count > 0) return count
 	}
 	const displayChannels = () => (
-		
+
 		(props.channels.length > 0) && (props.channels.map(channel => (
 			
 			<Menu.Item
@@ -23,8 +23,10 @@ const Channels = props => {
 				name={channel.name}
 				style={{ fontSize: '1.2rem', opacity: .7 }}
 				onClick={() =>{
-					  //{props.openModal}
+					if(y===1)
 					  props.setChannel(channel)
+					else
+					  alert("hi")
 				}
 				}
 				active={props.activeChannel === channel.id}>

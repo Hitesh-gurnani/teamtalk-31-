@@ -67,7 +67,7 @@ class Messages extends Component {
 	}
 
 	scrollToBottom = () => {
-		this.msgRef.scrollIntoView({ behavior:'smooth' })
+		this.msgRef.scrollIntoView({ behavior:'smooth', block: "end", inline: "nearest" })
 	}
 
 	addFile = e => {
@@ -86,6 +86,7 @@ class Messages extends Component {
 				this.clearFile()
 			}
 		}
+		this.scrollToBottom();
 	}
 
 	clearFile = () => this.setState({ file: null })
@@ -155,6 +156,7 @@ class Messages extends Component {
 					msgError: this.state.msgError.concat(err),
 				})
 			})
+			this.scrollToBottom();
 	}
 	isAuthFile = fileName => this.state.AuthorizedFile.includes(mime.lookup(fileName))
 
@@ -227,6 +229,7 @@ class Messages extends Component {
 		} else {
 			message['content'] = this.state.message
 		}
+		this.scrollToBottom();
 		return message;
 	}
 

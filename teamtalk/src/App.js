@@ -11,6 +11,7 @@ const Panel=React.lazy(()=>import('./Containers/Panel/index'))
 const Register=React.lazy(()=>import('./Containers/Auth/RegisterContainer'))
 const Signin =React.lazy(()=>import('./Containers/Auth/SigninContainer'))
 const alanKey = ''
+
 class App extends Component {
   componentDidMount() {
     this.alanBtnInstance = alanBtn({ 
@@ -35,6 +36,7 @@ class App extends Component {
       })
   }
   render() {
+    
     return this.props.isLoading?<Spinner/>: (
       <React.Suspense fallback={Spinner}>
         <Switch>

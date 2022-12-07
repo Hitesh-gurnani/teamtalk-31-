@@ -10,7 +10,8 @@ class Sidepanel extends Component {
 		modal: false,
 		modalForm: {
 			channelName: '',
-			channelDesc: ''
+			channelDesc: '',
+			channelpassword:'',
 		},
 		channelsRef: firebase.database().ref("channels"),
 		loadingChannels: false,
@@ -153,9 +154,15 @@ class Sidepanel extends Component {
 			...this.state.modalForm,
 			[e.target.name]: e.target.value,
 		}
+		console.log('====================================');
+		console.log(updatedForm);
+		console.log('====================================');
 		this.setState({ modalForm: updatedForm })
 	}
-
+	checkchannelkey =(e)=>
+{
+	console.log(this.state)
+}
 	closeModal = () => {
 		this.setState({ modal: false })
 	}
@@ -174,7 +181,7 @@ class Sidepanel extends Component {
 				console.log(err);
 			})
 	}
-	isFormValid = () => (this.state.modalForm.channelName && this.state.modalForm.channelDesc)
+	isFormValid = () => (this.state.modalForm.channelName && this.state.modalForm.channelDesc && this.state.modalForm.channelDesc)
 
 	addChannel = () => {
 
@@ -186,6 +193,7 @@ class Sidepanel extends Component {
 			id: key,
 			name: modalForm.channelName,
 			details: modalForm.channelDesc,
+			password:modalForm.channelpassword,
 			createdBy: {
 				name: this.props.user.displayName,
 				avatar: this.props.user.photoURL
@@ -197,7 +205,8 @@ class Sidepanel extends Component {
 				this.setState({
 					modalForm: {
 						channelName: '',
-						channelDesc: ''
+						channelDesc: '',
+						channelpassword:''
 					}
 				})
 				this.closeModal();

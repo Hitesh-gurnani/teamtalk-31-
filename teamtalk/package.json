@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@alan-ai/alan-sdk-web": "^1.8.42",
     "@emailjs/browser": "^3.9.1",
     "@progress/kendo-react-upload": "^5.9.0",
     "@rpldy/uploady": "^1.2.0",

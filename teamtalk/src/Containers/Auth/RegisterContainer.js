@@ -28,14 +28,19 @@ class RegisterContainer extends Component {
 		)
 	}
 	onSubmit = e => {
+		
 		this.setState({ loading: true })
-		var v = this.state.formData.email.slice(7);
+		let k=this.state.formData.email.indexOf('@');
+		var v = this.state.formData.email.slice(k);
+		console.log(v)
 		if (this.isFormValid && v==="@juetguna.in") {
+			alert('Email verification link has been send')
 			e.preventDefault();
 			firebase
 				.auth()
-				firebase.auth().onAuthStateChanged(function(user) {
-					user.sendEmailVerification(); 
+				firebase.auth().onAuthStateChanged(async function(user) {
+					await user.sendEmailVerification(); 
+					
 				});
 				firebase.auth().createUserWithEmailAndPassword(this.state.formData.email, this.state.formData.password)
 				.then(createdUser => {
